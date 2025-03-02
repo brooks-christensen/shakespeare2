@@ -4,11 +4,14 @@ from shakespeare2.config.config import CONFIG
 from shakespeare2.models.bigram_language_model import BigramLanguageModel
 from shakespeare2.data.data import set_up_data
 from shakespeare2.utils.utils import seed_everything
+from loguru import logger
 
 # set random seed
+logger.info('Seeding randomization....')
 seed_everything(1337)
 
 # set up constants from config file
+logger.info('Defining constants from config file....')
 TRAIN_VAL_SPLIT = CONFIG.hyperparameters.train_val_split
 BLOCK_SIZE = CONFIG.hyperparameters.block_size
 BATCH_SIZE = CONFIG.hyperparameters.batch_size
@@ -21,6 +24,7 @@ MODEL_BASE_NAME = CONFIG.paths.model_base_name
 MODEL_EXTENSION = CONFIG.paths.model_extension
 
 # set up constants from the data
+logger.info('Setting up constants from the data....')
 (
     TEXT,
     VOCAB_SIZE,
@@ -32,6 +36,7 @@ MODEL_EXTENSION = CONFIG.paths.model_extension
 def train():
 
     # create training and validation splits
+    logger.info('Creating training and validation splits....')
     n = int(TRAIN_VAL_SPLIT * len(DATA))
     train_data, val_data = DATA[:n], DATA[n:]
 
@@ -62,11 +67,12 @@ def train():
         return out
         
     # instantiate the model
+    logger.info('Instantiating the model....')
     model = BigramLanguageModel()
     m = model.to(DEVICE)
 
     # reporting
-    print(f"number of parameters: {sum(p.numel() for p in m.parameters())}")
+    logger.info(f"number of parameters: {sum(p.numel() for p in m.parameters())}")
 
     # instantiate the optimizer
     optimizer = torch.optim.AdamW(m.parameters(), lr=LEARNING_RATE)
@@ -77,7 +83,7 @@ def train():
         # every once in a while evaluate the loss on train and val sets
         if iter % EVAL_INTERVAL == 0 or iter == MAX_ITERS - 1:
             losses = estimate_loss()
-            print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+            logger.info(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
 
         # sample a batch of data
         xb, yb = get_batch('train')
@@ -96,4 +102,5 @@ def train():
         version += 1
         file_path = Path(model_path) / f'{MODEL_BASE_NAME}_v{version}.{MODEL_EXTENSION}'
 
+    logger.info(f'Saving model to {file_path}....')
     torch.save(m.state_dict(), str(file_path))

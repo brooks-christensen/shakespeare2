@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import yaml
 from torch.cuda import is_available
 import torch
+from loguru import logger
 
 @dataclass
 class PathsConfig:
@@ -55,4 +56,5 @@ def load_config(path=(Path().cwd() / 'config' / 'config.yaml')) -> Config:
         generation=GenerationConfig(**cfg_dict['generation']),
     )
 
+logger.info('Loading configurations....')
 CONFIG = load_config()

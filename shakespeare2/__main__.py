@@ -1,9 +1,13 @@
 import argparse
 import sys
+
+import shakespeare2.logging.logging
 from shakespeare2.helpers.train import train
 from shakespeare2.helpers.generator import generate
 
+
 def main():
+
     parser = argparse.ArgumentParser(
         description="Run the generative AI model in training or generation mode."
     )

@@ -1,0 +1,38 @@
+2025-03-02 15:35:57.193 | INFO     | shakespeare2.config.config:<module>:59 - Loading configurations....
+2025-03-02 15:35:57.195 | INFO     | shakespeare2.data.data:set_up_data:48 - Data download URL: https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+2025-03-02 15:35:57.195 | INFO     | shakespeare2.data.data:set_up_data:50 - Data download path: /home/peacelovephysics/shakespeare2/data/input.txt
+2025-03-02 15:35:57.200 | INFO     | shakespeare2.data.data:create_vocab:30 - Writing map of integers to characters for decoding to /home/peacelovephysics/shakespeare2/data/itos.json
+2025-03-02 15:35:57.256 | DEBUG    | shakespeare2.data.data:set_up_data:53 - text length: 1115394
+2025-03-02 15:35:57.257 | INFO     | shakespeare2.data.data:set_up_data:54 - vocab_size: 65
+2025-03-02 15:35:57.257 | DEBUG    | shakespeare2.data.data:set_up_data:55 - itos length: 65
+2025-03-02 15:35:57.257 | DEBUG    | shakespeare2.data.data:set_up_data:56 - data type: <class 'torch.Tensor'>
+2025-03-02 15:35:57.262 | INFO     | shakespeare2.helpers.train:<module>:10 - Seeding randomization....
+2025-03-02 15:35:57.262 | INFO     | shakespeare2.helpers.train:<module>:14 - Defining constants from config file....
+2025-03-02 15:35:57.262 | INFO     | shakespeare2.helpers.train:<module>:27 - Setting up constants from the data....
+2025-03-02 15:35:57.262 | INFO     | shakespeare2.helpers.generator:<module>:10 - Defining constants from the configuration file....
+2025-03-02 15:35:57.262 | INFO     | shakespeare2.helpers.generator:<module>:20 - Importing map of integers to characters for decoder from: /home/peacelovephysics/shakespeare2/data/itos.json
+2025-03-02 15:35:57.262 | DEBUG    | shakespeare2.helpers.generator:<module>:24 - itos length: 65
+2025-03-02 15:35:57.263 | INFO     | shakespeare2.helpers.generator:generate:32 - Loading empty model....
+2025-03-02 15:35:57.328 | INFO     | shakespeare2.helpers.generator:generate:35 - Loading state dictionary from /home/peacelovephysics/shakespeare2/models/bigram_language_model_v0.pth....
+2025-03-02 15:36:05.052 | INFO     | shakespeare2.helpers.generator:generate:41 - 
+Savour for time and notied lap the farmer off
+Yet lives a hardenlywoman's watcherity:
+Here I speak, and has that socred and tears,
+Whose nature means, poor ells mark coolmulhter.
+
+Patronarch:
+So good ladish, and anoys. What, is the seat,
+And spurfed, let it of stone be cost
+Camilling to lawful with dogs
+Ere of the crown and lowly swood cax louts
+And grave the house of Rich others.
+
+CAPULET:
+Do not of the dame of of feck?
+
+Nurse:
+He wrong of; she shall all become
+My duty cousin.
+
+PRINCESTER:
+Hast
