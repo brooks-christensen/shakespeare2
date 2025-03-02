@@ -1,25 +1,23 @@
 import torch
 from typing import List
 from shakespeare2.config.config import CONFIG
-from shakespeare2.data.data import set_up_data
 from shakespeare2.models.bigram_language_model import BigramLanguageModel
 from pathlib import Path
+import json
 
+# define constants from configuration file
 MODEL_PATH = CONFIG.paths.model_path
 MODEL_BASE_NAME = CONFIG.paths.model_base_name
 MODEL_VERSION = CONFIG.generation.model_version
 MODEL_EXTENSION = CONFIG.paths.model_extension
 DEVICE = CONFIG.device
 MAX_NEW_TOKENS = CONFIG.generation.max_new_tokens
+ITOS_PATH = CONFIG.paths.itos_path
 
-
-(
-    TEXT,
-    VOCAB_SIZE,
-    ITOS,
-    DATA
-) = set_up_data()
-
+# import map of integers to characters for decoder
+with open(ITOS_PATH, 'r', encoding='utf-8') as f:
+    itos_list = json.load(f)
+ITOS = {int(k): v for k, v in itos_list}
 
 # decoder: take a list of integers, output a string
 def decode(li: List[int]) -> str:

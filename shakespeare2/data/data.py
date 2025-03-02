@@ -2,9 +2,9 @@ import subprocess
 from torch import tensor, long
 from typing import List
 from pathlib import Path
+import json
 
-# Optionally, import your config here from a centralized module
-from shakespeare2.config.config import CONFIG  # assuming you have a centralized config module
+from shakespeare2.config.config import CONFIG
 
 def download_and_read_data(url: str, download_path: Path) -> str:
     if not download_path.exists():
@@ -22,6 +22,10 @@ def create_vocab(text: str):
     vocab_size = len(chars)
     stoi = {ch: i for i, ch in enumerate(chars)}
     itos = {i: ch for i, ch in enumerate(chars)}
+    # Save itos as UTF-8 characters in a JSON file
+    with open(Path(CONFIG.paths.itos_path).resolve(), 'w', encoding='utf-8') as f:
+        json.dump(list(itos.items()), f)
+    # create encoder function
     def encode(s: str) -> List[int]:
         return [stoi[ch] for ch in s]
     data = tensor(encode(text), dtype=long)

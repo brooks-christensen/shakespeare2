@@ -13,6 +13,7 @@ class PathsConfig:
     model_path: str
     model_base_name: str
     model_extension: str
+    itos_path: str
 
 @dataclass
 class HyperparametersConfig:

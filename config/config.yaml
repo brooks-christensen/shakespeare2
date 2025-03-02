@@ -5,6 +5,7 @@ paths:
   model_path: "./models/"
   model_base_name: "bigram_language_model"
   model_extension: "pth"
+  itos_path: "./data/itos.json"
 
 hyperparameters:
   batch_size: 64

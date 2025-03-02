@@ -18,11 +18,11 @@ def seed_everything(seed: int):
     torch.cuda.manual_seed_all(seed)
     
     # For deterministic behavior on cuDNN backend (may slow down performance)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = False
+    torch.backends.cudnn.benchmark = True
 
     # Optionally, enforce deterministic algorithms (PyTorch 1.8+)
-    torch.use_deterministic_algorithms(True)
+    # torch.use_deterministic_algorithms(True)
 
 # Example usage:
 seed_everything(42)

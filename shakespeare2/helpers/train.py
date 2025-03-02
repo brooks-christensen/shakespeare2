@@ -8,6 +8,7 @@ from shakespeare2.utils.utils import seed_everything
 # set random seed
 seed_everything(1337)
 
+# set up constants from config file
 TRAIN_VAL_SPLIT = CONFIG.hyperparameters.train_val_split
 BLOCK_SIZE = CONFIG.hyperparameters.block_size
 BATCH_SIZE = CONFIG.hyperparameters.batch_size
@@ -17,9 +18,9 @@ LEARNING_RATE = float(CONFIG.hyperparameters.learning_rate)
 MAX_ITERS = CONFIG.hyperparameters.max_iters
 EVAL_INTERVAL = CONFIG.hyperparameters.eval_interval
 MODEL_BASE_NAME = CONFIG.paths.model_base_name
-MODEL_PATH = CONFIG.paths.model_path
 MODEL_EXTENSION = CONFIG.paths.model_extension
 
+# set up constants from the data
 (
     TEXT,
     VOCAB_SIZE,
@@ -87,20 +88,12 @@ def train():
         loss.backward()
         optimizer.step()
 
-    # # generate from the model
-    # context = torch.zeros((1, 1), dtype=torch.long, device=DEVICE)
-    # print(decode(m.generate(context, MAX_NEW_TOKENS=MAX_NEW_TOKENS)[0].tolist()))
-
-    # store the model
+    # store the model (with versioning)
     version = 0
-
-    if MODEL_PATH.startswith('.'):
-        MODEL_PATH = Path().cwd() / '/'.join((MODEL_PATH).split('/')[1:])
-
-    file_path = Path(MODEL_PATH) / f'{MODEL_BASE_NAME}_v{version}.{MODEL_EXTENSION}'
-
+    model_path = Path(CONFIG.paths.model_path).resolve()
+    file_path = Path(model_path) / f'{MODEL_BASE_NAME}_v{version}.{MODEL_EXTENSION}'
     while file_path.exists():
         version += 1
-        file_path = Path(MODEL_PATH) / f'{MODEL_BASE_NAME}_v{version}.{MODEL_EXTENSION}'
+        file_path = Path(model_path) / f'{MODEL_BASE_NAME}_v{version}.{MODEL_EXTENSION}'
 
-    torch.save(model.state_dict(), str(file_path))
+    torch.save(m.state_dict(), str(file_path))
