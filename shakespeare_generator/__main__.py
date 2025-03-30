@@ -1,9 +1,9 @@
 import argparse
 import sys
 
-import shakespeare2.logging.logging
-from shakespeare2.helpers.train import train
-from shakespeare2.helpers.generator import generate
+import shakespeare_generator.logging.logging
+from shakespeare_generator.helpers.train import train
+from shakespeare_generator.helpers.generator import generate
 
 
 def main():

@@ -1,9 +1,9 @@
 from pathlib import Path
 import torch
-from shakespeare2.config.config import CONFIG
-from shakespeare2.models.bigram_language_model import BigramLanguageModel
-from shakespeare2.data.data import set_up_data
-from shakespeare2.utils.utils import seed_everything
+from shakespeare_generator.config.config import CONFIG
+from shakespeare_generator.models.bigram_language_model import BigramLanguageModel
+from shakespeare_generator.data.data import set_up_data
+from shakespeare_generator.utils.utils import seed_everything
 from loguru import logger
 
 # set random seed

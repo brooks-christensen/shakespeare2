@@ -5,7 +5,7 @@ from pathlib import Path
 import json
 from loguru import logger
 
-from shakespeare2.config.config import CONFIG
+from shakespeare_generator.config.config import CONFIG
 
 
 def download_and_read_data(url: str, download_path: Path) -> str:

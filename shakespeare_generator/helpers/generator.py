@@ -1,7 +1,7 @@
 import torch
 from typing import List
-from shakespeare2.config.config import CONFIG
-from shakespeare2.models.bigram_language_model import BigramLanguageModel
+from shakespeare_generator.config.config import CONFIG
+from shakespeare_generator.models.bigram_language_model import BigramLanguageModel
 from pathlib import Path
 import json
 from loguru import logger
