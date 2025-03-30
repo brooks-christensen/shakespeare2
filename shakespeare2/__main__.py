@@ -13,6 +13,7 @@ def main():
     )
     parser.add_argument(
         "--mode",
+        '-m',
         type=str,
         choices=["train", "generate"],
         required=True,
