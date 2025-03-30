@@ -2,7 +2,7 @@ paths:
   data_url: "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
   config_path: "./config/config.yaml"
   data_path: "./data/input.txt"
-  model_path: "./models/"
+  model_path: "./model/"
   model_base_name: "bigram_language_model"
   model_extension: "pth"
   itos_path: "./data/itos.json"
@@ -23,5 +23,5 @@ vocabulary:
   n_embd: 384
 
 generation:
-  max_new_tokens: 500
-  model_version: 0
+  max_new_tokens: 1000
+  model_version: 2
