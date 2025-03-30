@@ -11,22 +11,22 @@ def main():
     parser = argparse.ArgumentParser(
         description="Run the generative AI model in training or generation mode."
     )
-    parser.add_argument(
-        "--mode",
-        '-m',
-        type=str,
-        choices=["train", "generate"],
-        required=True,
-        help="Mode to run: 'train' for training or 'generate' for text generation."
-    )
+    subparsers = parser.add_subparsers(dest="mode", required=True, help="Subcommands: 'train' or 'generate'")
+
+    # Subparser for 'train' mode
+    train_parser = subparsers.add_parser("train", help="Run the model in training mode.")
+
+    # Subparser for 'generate' mode
+    generate_parser = subparsers.add_parser("generate", help="Run the model in text generation mode.")
+    
     args = parser.parse_args()
 
     if args.mode == "train":
         print("Starting training mode...")
-        train()  # Assumes helpers/train.py defines a main() function
+        train()  
     elif args.mode == "generate":
         print("Starting generation mode...")
-        generate()  # Assumes helpers/generator.py defines a main() function
+        generate() 
     else:
         print("Invalid mode. Please choose either 'train' or 'generate'.")
         sys.exit(1)
