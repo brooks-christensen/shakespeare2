@@ -1,4 +1,4 @@
 .old/
 *.pth
-*.log
 logs/
+*.pyc
