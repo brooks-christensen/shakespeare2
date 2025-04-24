@@ -2,9 +2,19 @@
 from pathlib import Path
 from dataclasses import dataclass
 import yaml
-from torch.cuda import is_available
+from torch.cuda import is_available as cia
+from torch.backends.mps import is_available as mia
 import torch
 from loguru import logger
+
+if cia():
+    device = torch.device('cuda')
+elif mia():
+    device = torch.device('mps')
+else:
+    device = torch.device('cpu')
+
+logger.info(f"Device: {device}")
 
 @dataclass
 class PathsConfig:
@@ -44,7 +54,7 @@ class Config:
     hyperparameters: HyperparametersConfig
     vocabulary: VocabularyConfig
     generation: GenerationConfig
-    device: torch.device = torch.device('cuda' if is_available() else 'cpu')
+    device: torch.device = device
 
 def load_config(path=(Path().cwd() / 'config' / 'config.yaml')) -> Config:
     with open(path, 'r') as f:

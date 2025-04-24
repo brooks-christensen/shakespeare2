@@ -1,3 +1,4 @@
 loguru
 torch
 pyyaml
+numpy
